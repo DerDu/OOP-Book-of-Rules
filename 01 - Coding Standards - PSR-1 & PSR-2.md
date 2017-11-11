@@ -1,33 +1,26 @@
-## 1. Overview
+# 01 - Coding Standards - PSR-1 & PSR-2
+
+This guide extends and expands on PSR-1 / PSR-2 coding standard.
+
+The intent of this guide is to reduce cognitive friction when scanning code from different authors. It does so by enumerating a shared set of rules and expectations about how to format PHP code.
+
+## 1. Files
+
+### 1.1. PHP Tags
 
 - Files MUST use only `<?php` tags.
 
+- The closing ?> tag MUST be omitted from files containing only PHP.
+
+- It MUST NOT use the other tag variations.
+
+### 1.2. Character Encoding
+
 - Files MUST use only UTF-8 without BOM for PHP code.
 
-- Files SHOULD *either* declare symbols (classes, functions, constants, etc.)
-  *or* cause side-effects (e.g. generate output, change .ini settings, etc.)
-  but SHOULD NOT do both.
+- All PHP files MUST use the Unix LF (linefeed) line ending.
 
-- Namespaces and classes MUST follow an "autoloading" PSR: PSR-4.
-
-- Class names MUST be declared in `StudlyCaps`.
-
-- Class constants MUST be declared in all upper case with underscore separators.
-
-- Method names MUST be declared in `camelCase`.
-
-
-## 2. Files
-
-### 2.1. PHP Tags
-
-PHP code MUST use the long `<?php ?>`; it MUST NOT use the other tag variations.
-
-### 2.2. Character Encoding
-
-PHP code MUST use only UTF-8 without BOM.
-
-### 2.3. Side Effects
+### 1.3. Side Effects
 
 A file SHOULD declare new symbols (classes, functions, constants,
 etc.) and cause no other side effects, or it SHOULD execute logic with side
@@ -84,16 +77,54 @@ if (! function_exists('bar')) {
 ~~~
 
 
+## 2. Source Code
+
+### 2.1. File specific
+
+- Code MUST use 4 spaces for indenting, not tabs.
+
+- There MUST NOT be a hard limit on line length; the soft limit MUST be 120 characters; lines SHOULD be 80 characters or less.
+
+- There MUST be one blank line after the namespace declaration, and there MUST be one blank line after the block of use declarations.
+
+- All PHP files MUST end with a single blank line.
+
+- There MUST NOT be trailing whitespace at the end of non-blank lines.
+
+- Blank lines MAY be added to improve readability and to indicate related blocks of code.
+
+### 2.2. Code specific
+
+- Opening braces for classes MUST go on the next line, and closing braces MUST go on the next line after the body.
+
+- Opening braces for methods MUST go on the next line, and closing braces MUST go on the next line after the body.
+
+- Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
+
+- Control structure keywords MUST have one space after them; method and function calls MUST NOT.
+
+- Opening braces for control structures MUST go on the same line, and closing braces MUST go on the next line after the body.
+
+- Opening parentheses for control structures MUST NOT have a space after them, and closing parentheses for control structures MUST NOT have a space before.
+
+- There MUST NOT be more than one statement per line.
+
+- PHP keywords MUST be in lower case.
+
+- The PHP constants true, false, and null MUST be in lower case.
+
 ## 3. Namespace and Class Names
 
-Namespaces and classes MUST follow an "autoloading" PSR: PSR-4
+- Namespaces and classes MUST follow an "autoloading" PSR: PSR-4
 
 This means each class is in a file by itself, and is in a namespace of at
 least one level: a top-level vendor name.
 
-Class names MUST be declared in `StudlyCaps`.
+### 3.1. General
 
-Code written for PHP 5.3 and after MUST use formal namespaces.
+- Class names MUST be declared in `StudlyCaps`.
+
+- Code written for PHP 5.3 and after MUST use formal namespaces.
 
 For example:
 
@@ -107,6 +138,30 @@ class Foo
 }
 ~~~
 
+### 3.2. Use Declarations
+
+- When present, there MUST be one blank line after the `namespace` declaration.
+
+- When present, all `use` declarations MUST go after the `namespace`
+declaration.
+
+- There MUST be one `use` keyword per declaration.
+
+- There MUST be one blank line after the `use` block.
+
+For example:
+
+~~~php
+<?php
+namespace Vendor\Package;
+
+use FooClass;
+use BarClass as Bar;
+use OtherVendor\OtherPackage\BazClass;
+
+// ... additional PHP code ...
+
+~~~
 
 ## 4. Class Constants, Properties, and Methods
 
